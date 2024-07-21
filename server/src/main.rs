@@ -3,8 +3,6 @@ use std::pin::Pin;
 use tokio_stream::{wrappers::ReceiverStream, Stream};
 use tonic::{transport::Server, Request, Response, Status};
 
-mod hello;
-
 use hello::{
     hello_service_server::{HelloService, HelloServiceServer},
     HelloRequest, HelloResponse,

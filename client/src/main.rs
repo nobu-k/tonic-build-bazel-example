@@ -1,8 +1,5 @@
-mod hello;
 use hello::hello_service_client::HelloServiceClient;
 use hello::HelloRequest;
-use tokio_stream::StreamExt;
-use tonic::Request;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {

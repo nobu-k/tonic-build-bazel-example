@@ -1,6 +1,6 @@
 [workspace]
 members = [
     "server",
-    "client",
+    "client", "protos/hello",
 ]
 resolver = "2"
