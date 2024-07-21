@@ -1,11 +1,32 @@
 load("@rules_rust//rust:defs.bzl", "rust_binary")
+load("@rules_rust//cargo:defs.bzl", "cargo_build_script")
 load("@crate//:defs.bzl", "all_crate_deps")
+
+cargo_build_script(
+    name = "build_script",
+    srcs = ["build.rs"],
+    build_script_env = {
+        "PROTOC_RLOCATION": "$(rlocationpath @protobuf//:protoc)",
+    },
+    crate_features = ["bazel"],
+    data = [
+        "//protos/hello:hello.proto",
+        "@protobuf//:protoc",
+    ],
+    proc_macro_deps = all_crate_deps(proc_macro = True),
+    deps = ["@rules_rust//tools/runfiles"] + all_crate_deps(
+        build = True,
+    ),
+)
 
 rust_binary(
     name = "client",
     srcs = ["src/main.rs"],
     proc_macro_deps = all_crate_deps(proc_macro = True),
-    deps = ["//protos/hello"] + all_crate_deps(
+    deps = [
+        "//protos/hello",
+        ":build_script",
+    ] + all_crate_deps(
         normal = True,
     ),
 )

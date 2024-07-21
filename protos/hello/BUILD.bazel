@@ -2,6 +2,8 @@ load("@rules_rust//rust:defs.bzl", "rust_library")
 load("@rules_rust//cargo:defs.bzl", "cargo_build_script")
 load("@crate//:defs.bzl", "all_crate_deps")
 
+exports_files(["hello.proto"])
+
 cargo_build_script(
     name = "build_script",
     srcs = ["build.rs"],

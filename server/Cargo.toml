@@ -11,7 +11,3 @@ tokio-macros = { version = "2" }
 async-stream = "0.3"
 tokio-stream = "0.1"
 hello = { path = "../protos/hello" }
-
-[build-dependencies]
-tonic-build = "0.11.0"
-

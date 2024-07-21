@@ -1,3 +1,7 @@
+mod hello {
+    tonic::include_proto!("hello");
+}
+
 use hello::hello_service_client::HelloServiceClient;
 use hello::HelloRequest;
 
